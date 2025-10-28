@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="Metadata-Store">
+        <createTable tableName="DYNAMIC_DATA_STORE">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_DYNAMIC_DATA_STORE"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Metadata-Store">
+        <createTable tableName="METADATA_ATTRIBUTE_DEFINITION">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_METADATA_ATTRIBUTE_DEFINITION"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="TYPE_" type="VARCHAR(255)"/>
+            <column name="METADATA_DEFINITION_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Metadata-Store">
+        <createTable tableName="METADATA_DEFINITION">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_METADATA_DEFINITION"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="DATA_STORE_ID" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="Metadata-Store">
+        <createIndex indexName="IDX_METADATA_ATTRIBUTE_DEFINITION_METADATA_DEFINITION"
+                     tableName="METADATA_ATTRIBUTE_DEFINITION">
+            <column name="METADATA_DEFINITION_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="METADATA_DEFINITION_ID" baseTableName="METADATA_ATTRIBUTE_DEFINITION"
+                                 constraintName="FK_METADATA_ATTRIBUTE_DEFINITION_ON_METADATA_DEFINITION"
+                                 onDelete="CASCADE" referencedColumnNames="ID"
+                                 referencedTableName="METADATA_DEFINITION"/>
+    </changeSet>
+    <changeSet id="5" author="Metadata-Store">
+        <createIndex indexName="IDX_METADATA_DEFINITION_DATA_STORE" tableName="METADATA_DEFINITION">
+            <column name="DATA_STORE_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="DATA_STORE_ID" baseTableName="METADATA_DEFINITION"
+                                 constraintName="FK_METADATA_DEFINITION_ON_DATA_STORE" referencedColumnNames="ID"
+                                 referencedTableName="DYNAMIC_DATA_STORE"/>
+    </changeSet>
+</databaseChangeLog>
