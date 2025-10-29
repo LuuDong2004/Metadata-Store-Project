@@ -1,4 +1,95 @@
-@import url('Metadata-Store.css');
-@import url('view/main-view.css');
-@import url('view/main-view-top-menu.css');
-@import url('view/login-view.css');
+/* Metadata Import View Styles */
+.entity-preview {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: white;
+}
+
+.entity-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #1976d2;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.fully-qualified {
+    font-family: monospace;
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.entity-description {
+    font-style: italic;
+    color: #555;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.attributes-preview {
+    margin-top: 8px;
+    padding-left: 16px;
+}
+
+.attributes-title {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.attribute-item {
+    margin: 2px 0;
+}
+
+.attribute-name {
+    font-family: monospace;
+    font-size: 13px;
+    color: #444;
+}
+
+/* Virtual Stores View Styles */
+.entity-count {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Create Entity View Styles */
+.result-preview {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 16px;
+    background-color: white;
+    margin-top: 16px;
+}
+
+.result-item {
+    display: block;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.result-item.fully-qualified {
+    font-family: monospace;
+    font-weight: bold;
+    color: #1976d2;
+    background-color: #e3f2fd;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.result-item.attributes-info {
+    font-style: italic;
+    color: #666;
+    background-color: #f5f5f5;
+    padding: 4px 8px;
+    border-radius: 4px;
+}

@@ -3,7 +3,6 @@ package com.vn.ms;
 import com.google.common.base.Strings;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
-import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

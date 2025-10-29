@@ -3,6 +3,10 @@
 
     <menu id="application" title="msg://com.vn.ms/menu.application.title" opened="true">
         <item view="User.list" title="msg://com.vn.ms.view.user/UserListView.title"/>
+        
+        <!-- Dynamic Metadata Section -->
+        <item view="DynamicMetadataPreviewView"
+              title="msg://com.vn.ms.view.dynamicmetadatapreview/dynamicMetadataPreviewView.title"/>
     </menu>
 
 </menu-config>

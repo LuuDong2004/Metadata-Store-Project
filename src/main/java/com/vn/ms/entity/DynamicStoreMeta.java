@@ -1,18 +1,19 @@
 package com.vn.ms.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
-import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "DYNAMIC_DATA_STORE")
+@Table(name = "DYNAMIC_STORE_META")
 @Entity
-public class DynamicDataStore {
+public class DynamicStoreMeta {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -24,18 +25,6 @@ public class DynamicDataStore {
 
     @Column(name = "DESCRIPTION")
     private String description;
-
-    @Composition
-    @OneToMany(mappedBy = "dataStore")
-    private List<MetadataDefinition> metadataDefinitions;
-
-    public List<MetadataDefinition> getMetadataDefinitions() {
-        return metadataDefinitions;
-    }
-
-    public void setMetadataDefinitions(List<MetadataDefinition> metadataDefinitions) {
-        this.metadataDefinitions = metadataDefinitions;
-    }
 
     public String getDescription() {
         return description;

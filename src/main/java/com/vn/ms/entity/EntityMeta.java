@@ -11,14 +11,18 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "METADATA_DEFINITION", indexes = {
-        @Index(name = "IDX_METADATA_DEFINITION_DATA_STORE", columnList = "DATA_STORE_ID")
+        @Index(name = "IDX_METADATA_DEFINITION_STORE_META", columnList = "STORE_META_ID")
 })
 @Entity
-public class MetadataDefinition {
+public class EntityMeta {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
+
+    @JoinColumn(name = "STORE_META_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private DynamicStoreMeta storeMeta;
 
     @InstanceName
     @Column(name = "NAME")
@@ -27,30 +31,26 @@ public class MetadataDefinition {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @JoinColumn(name = "DATA_STORE_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private DynamicDataStore dataStore;
-
     @Composition
-    @OneToMany(mappedBy = "metadataDefinition")
-    private List<MetadataAttributeDefinition> attributes;
+    @OneToMany(mappedBy = "entityMeta")
+    private List<EntityMetaAttribute> attributes;
 
-    public List<MetadataAttributeDefinition> getAttributes() {
+    public DynamicStoreMeta getStoreMeta() {
+        return storeMeta;
+    }
+
+    public void setStoreMeta(DynamicStoreMeta storeMeta) {
+        this.storeMeta = storeMeta;
+    }
+
+    public List<EntityMetaAttribute> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<MetadataAttributeDefinition> attributes) {
+    public void setAttributes(List<EntityMetaAttribute> attributes) {
         this.attributes = attributes;
     }
 
-
-    public DynamicDataStore getDataStore() {
-        return dataStore;
-    }
-
-    public void setDataStore(DynamicDataStore dataStore) {
-        this.dataStore = dataStore;
-    }
 
     public String getName() {
         return name;

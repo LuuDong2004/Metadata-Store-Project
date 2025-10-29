@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="Preview Dynamic Metadata">
+
+    <data>
+        <!-- Container rỗng chỉ để DataGrid có binding khi load -->
+        <keyValueCollection id="previewDc"/>
+    </data>
+
+    <layout width="100%" padding="true">
+        <hbox width="100%" spacing="true">
+            <vbox width="60%" spacing="true">
+                <label text="Metadata JSON (store + entities hoặc 1 entity)"/>
+                <textArea id="metadataJsonArea" width="100%" height="260px"
+                          placeholder='{
+  "storeName": "storeA",
+  "entities": [
+    {
+      "name": "VirtualOrder",
+      "attributes": [
+        {"name":"id","type":"UUID"},
+        {"name":"name","type":"STRING"},
+        {"name":"amount","type":"BIG_DECIMAL"}
+      ]
+    }
+  ]
+}'/>
+            </vbox>
+
+            <vbox width="40%" spacing="true">
+                <label text="Entity muốn preview"/>
+                <comboBox id="entityCombo" width="100%"/>
+                <hbox spacing="true">
+                    <button id="previewBtn" text="Preview" themeNames="primary"/>
+                    <button id="saveBtn" text="Save to Store" enabled="false"/>
+                </hbox>
+                <hr/>
+            </vbox>
+        </hbox>
+
+        <hr/>
+
+        <!-- DataGrid độc lập, không dataContainer -->
+        <dataGrid id="previewGrid"
+                  dataContainer="previewDc"
+                  width="100%"
+                  height="520px"/>
+    </layout>
+</view>
